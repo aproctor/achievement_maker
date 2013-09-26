@@ -10,6 +10,14 @@ def gravatar_image()
   client.get(owlsay_background).body
 end
 
+def word_wrap(text, options = {})
+  line_width = options.fetch(:line_width, 18)
+
+  text.split("\n").collect! do |line|
+    line.length > line_width ? line.gsub(/(.{1,#{line_width}})(\s+|$)/, "\\1\n").strip : line
+  end * "\n"
+end
+
 def achievement(first_line, second_line, gravatar = nil)
   canvas = Magick::Image.new(359, 139) { |c| c.background_color = "none"; c.format = "png" }
 
@@ -90,11 +98,7 @@ def achievement(first_line, second_line, gravatar = nil)
   draw.font('fonts/Helvetica.ttf')
   draw.font_size('15.5')
   draw.kerning('0.65')
-  draw.text(75,29, first_line)
-
-  draw.font_size('15.5')
-  draw.kerning('0.4')
-  draw.text(75,50, second_line)
+  draw.text(100,40, word_wrap(first_line))
 
   draw.draw(canvas)
   canvas
