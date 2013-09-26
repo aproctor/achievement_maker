@@ -77,10 +77,10 @@ def achievement(first_line, second_line, gravatar = nil)
 =end
   draw = Magick::Draw.new
 
-  owlsay_background = "https://s3.amazonaws.com/uploads.hipchat.com/18896/107970/hoo5pbjc6m7zbsx/OwlSay.png"
+  owlsay_background = "http://i.imgur.com/6Pemy4t.png"
   oimg = Magick::Image.from_blob(owlsay_background).first
   draw.composite(0, 0, 359, 139, oimg)
-  draw.draw(canvas)
+  #draw.draw(canvas)
 
 
   draw.fill("#FFFFFF")
