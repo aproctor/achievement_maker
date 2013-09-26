@@ -2,10 +2,12 @@ require 'digest/md5'
 require 'faraday'
 require 'RMagick'
 
-def gravatar_image(email, dims = 46)
-  client = Faraday::Connection.new(:url => "http://www.gravatar.com/")
-  hash = Digest::MD5.hexdigest(email.downcase.strip)
-  client.get("/avatar/#{hash}?s=#{dims}&d=mm").body
+def gravatar_image()
+  client = Faraday::Connection.new(:url => "http://i.imgur.com/")
+  #hash = Digest::MD5.hexdigest(email.downcase.strip)
+  #client.get("/avatar/#{hash}?s=#{dims}&d=mm").body
+  owlsay_background = "/6Pemy4t.png"
+  client.get(owlsay_background).body
 end
 
 def achievement(first_line, second_line, gravatar = nil)
@@ -77,8 +79,8 @@ def achievement(first_line, second_line, gravatar = nil)
 =end
   draw = Magick::Draw.new
 
-  owlsay_background = "http://i.imgur.com/6Pemy4t.png"
-  oimg = Magick::Image.from_blob(owlsay_background).first
+
+  oimg = Magick::Image.from_blob(gravatar_image).first
   draw.composite(0, 0, 359, 139, oimg)
   #draw.draw(canvas)
 
