@@ -15,7 +15,7 @@ get "/hoot/:text" do
   response['Cache-Control'] = "public, max-age=#{60*24*7}" # cache for one week
 
   text = params[:text]
-  text = "Owl: Hoo! It's been ages since these feathers could see this again..." if(!text.match(/[^[:space:]]/))
+  text = "Owl: Hoo! It's been ages since these feathers could see this again..." if(!text.match(/[^[:space:]]/) || text == "default")
 
   text = text.to_s.sub(/\.(jpeg|jpg|png|gif)$/i, '')
 
