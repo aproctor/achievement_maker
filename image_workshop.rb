@@ -2,12 +2,7 @@ require 'digest/md5'
 require 'faraday'
 require 'RMagick'
 
-def owl_image()
-  client = Faraday::Connection.new(:url => "http://i.imgur.com/")
-  owlsay_background = "/6Pemy4t.png"
-  client.get(owlsay_background).body
-end
-
+#Shamelessly stolen from rails
 def word_wrap(text, options = {})
   line_width = options.fetch(:line_width, 30)
 
@@ -16,7 +11,13 @@ def word_wrap(text, options = {})
   end * "\n"
 end
 
-def achievement(first_line)
+def owl_image()
+  client = Faraday::Connection.new(:url => "http://i.imgur.com/")
+  owlsay_background = "/6Pemy4t.png"
+  return client.get(owlsay_background).body
+end
+
+def owl_say_image(first_line)
   canvas = Magick::Image.new(359, 139) { |c| c.background_color = "none"; c.format = "png" }
   draw = Magick::Draw.new
 
@@ -31,5 +32,6 @@ def achievement(first_line)
   draw.text(100,40, word_wrap(first_line))
 
   draw.draw(canvas)
-  canvas
+
+  return canvas
 end

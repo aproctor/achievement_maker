@@ -2,10 +2,9 @@ require "rubygems"
 require "bundler"
 Bundler.setup(:default)
 
-require './achievement'
+require './image_workshop'
 
-first_line = 'ACHIEVEMENT UNLOCKED'
-second_line = 'you created an achievement generator'
+first_line = "Owl: Hoo! It's been ages since these feathers could see this again..."
 
-achievement(first_line, second_line).write('image.png')
+owl_say_image(first_line).write('image.png')
 
