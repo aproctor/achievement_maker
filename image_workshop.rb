@@ -4,7 +4,7 @@ require 'RMagick'
 
 #Shamelessly stolen from rails
 def word_wrap(text, options = {})
-  line_width = options.fetch(:line_width, 30)
+  line_width = options.fetch(:line_width, 25)
 
   text.split("\n").collect! do |line|
     line.length > line_width ? line.gsub(/(.{1,#{line_width}})(\s+|$)/, "\\1\n").strip : line
