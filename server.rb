@@ -22,6 +22,18 @@ get "/hoot/:text" do
   return owl_say_image(text).to_blob
 end
 
+get "/slow/:text" do
+  content_type 'image/png'
+  response['Cache-Control'] = "public, max-age=#{60*24*7}" # cache for one week
+
+  text = params[:text]
+  text = "Hey" if(!text.match(/[^[:space:]]/) || text == "default")
+
+  text = text.to_s.sub(/\.(jpeg|jpg|png|gif)$/i, '')
+
+  return slowsay_image(text).to_blob
+end
+
 get "/" do
   erb :index
 end

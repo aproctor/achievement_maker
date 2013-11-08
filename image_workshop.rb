@@ -11,6 +11,12 @@ def word_wrap(text, options = {})
   end * "\n"
 end
 
+def slowpoke_image()
+  client = Faraday::Connection.new(:url => "http://i.imgur.com/")
+  owlsay_background = "/w9EnM4Y.png"
+  return client.get(owlsay_background).body
+end
+
 def owl_image()
   client = Faraday::Connection.new(:url => "http://i.imgur.com/")
   owlsay_background = "/6Pemy4t.png"
@@ -26,6 +32,25 @@ def owl_say_image(first_line)
   draw.composite(0, 0, 359, 139, oimg)
 
   draw.fill("#FFFFFF")
+  draw.font('fonts/Helvetica.ttf')
+  draw.font_size('15.5')
+  draw.kerning('0.65')
+  draw.text(100,40, word_wrap(first_line))
+
+  draw.draw(canvas)
+
+  return canvas
+end
+
+def slowsay_image(first_line)
+  canvas = Magick::Image.new(359, 139) { |c| c.background_color = "none"; c.format = "png" }
+  draw = Magick::Draw.new
+
+
+  oimg = Magick::Image.from_blob(slowpoke_image).first
+  draw.composite(0, 0, 359, 139, oimg)
+
+  draw.fill("#000000")
   draw.font('fonts/Helvetica.ttf')
   draw.font_size('15.5')
   draw.kerning('0.65')
