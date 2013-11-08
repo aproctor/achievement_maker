@@ -35,7 +35,7 @@ def owl_say_image(first_line)
   draw.font('fonts/Helvetica.ttf')
   draw.font_size('15.5')
   draw.kerning('0.65')
-  draw.text(190,40, word_wrap(first_line))
+  draw.text(100,40, word_wrap(first_line))
 
   draw.draw(canvas)
 
@@ -54,7 +54,7 @@ def slowsay_image(first_line)
   draw.font('fonts/Helvetica.ttf')
   draw.font_size('15.5')
   draw.kerning('0.65')
-  draw.text(100,40, word_wrap(first_line))
+  draw.text(190,40, word_wrap(first_line))
 
   draw.draw(canvas)
 
